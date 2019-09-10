@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="fn.cancel()">取消防抖</button>
+    <div
+      id="app"
+      style="width: 200px;height: 200px;background-color: aqua;position: absolute;"
+    ></div>
+    <script>
+      // 防抖
+      function debounce(callBack = () => {}, wait = 2000, immediate = false) {
+        let timer, result;
+        let _debounce = function() {
+          if (timer) {
+            clearTimeout(timer);
+          }
+          // 立即执行
+          if (immediate) {
+            let callNow = !timer;
+            timer = setTimeout(() => {
+              timer = null;
+            }, wait);
+            if (callNow) {
+              result = callBack.apply(this, arguments);
+            }
+          } else {
+            timer = setTimeout(() => {
+              callBack.apply(this, arguments);
+            }, wait);
+          }
+          // 回调函数返回值，仅immediate为true生效
+          return result;
+        };
+        _debounce.cancel = function() {
+          clearTimeout(timer);
+          timer = null;
+        };
+        return _debounce;
+      }
+      // 节流
+      function trottle(callBack, wait = 3000, opstion = {}) {
+        let preTime = 0,
+          timer;
+        return function() {
+          const currentTime = Date.now();
+          if (!preTime && !opstion.leading) {
+            preTime = currentTime;
+          }
+          const remind = wait - (currentTime - preTime);
+          if (remind <= 0 || remind > wait) {
+            if (timer) {
+              clearTimeout(timer);
+              timer = null;
+            }
+            callBack.apply(this, arguments);
+            preTime = Date.now();
+          } else if (!timer && opstion.trailing) {
+            timer = setTimeout(() => {
+              callBack.apply(this, arguments);
+              timer = null;
+              preTime = !opstion.leading ? 0 : Date.now();
+            }, remind);
+          }
+        };
+      }
+      function throttleDelay(callBack, wait = 3000) {
+        let timer;
+        return function() {
+          if (!timer) {
+            timer = setTimeout(() => {
+              callBack.apply(this, arguments);
+              timer = null;
+            }, wait);
+          }
+        };
+      }
+      function sayHi(e) {
+        console.log("hello", e);
+        return "jack";
+      }
+      window.onresize = trottle(sayHi, 3000, {
+        leading: false,
+        trailing: true
+      });
+    </script>
+  </body>
+</html>

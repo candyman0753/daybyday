@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,maximum-sacle=1,minimum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* 单线 */
+      .border-1px {
+        position: relative;
+      }
+      @media screen and(-webkit-min-device-pixel-ratio:2) {
+        .border-1px::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 1px;
+          background-color: #333;
+          transform-origin: 0 0;
+          -webkit-transform-origin: 0 0;
+          transform: scaleX(0.5);
+          -webkit-transform: scaleX(0.5);
+        }
+      }
+
+      /* 四条边框 */
+      .scale-1px {
+        position: relative;
+        border: none;
+      }
+      .scale-1px::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        border: 1px solid #000;
+        width: 200%;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: left top;
+      }
+    </style>
+  </head>
+  <body style="font-size: 0.12rem">
+    <div style="width: 300px;height: 300px;border: 0.5px solid #000">
+      0.5px宽度
+    </div>
+    <div style="width: 300px;height: 300px;margin:10px 0;" class="border-1px">
+      单边框1px宽度
+    </div>
+    <div style="width: 300px;height: 300px;margin:10px 0;" class="scale-1px">
+      1px宽度
+    </div>
+    <script>
+      const docEl = document.documentElement,
+        metaViewPort = document.querySelector("meta[name='viewport']"),
+        rootTag = document.querySelector("html"),
+        dpr = window.devicePixelRatio || 1,
+        scale = 1 / dpr,
+        deviceWidth = Math.floor(docEl.clientWidth * dpr),
+        rem = Math.floor((deviceWidth * 100) / 750);
+
+      metaViewPort.setAttribute(
+        "content",
+        `width=${deviceWidth},initial-scale=${scale}`
+      );
+      rootTag.setAttribute("style", `font-size:${rem}px!important;`);
+      docEl.setAttribute("data-dpr", 1);
+    </script>
+  </body>
+</html>

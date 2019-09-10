@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .line-body {
+        background-color: green;
+        position: relative;
+        height: 70px;
+        width: 100%;
+        margin: 10px 0;
+      }
+      .line-center-item {
+        background-color: #999;
+        width: 400px;
+        /* text-align: center; */
+      }
+      .flex {
+        display: flex;
+      }
+      .vertical-helper::after {
+        display: inline-block;
+        vertical-align: middle;
+        content: "";
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>水平居中</h2>
+    <p class="line-body" style="text-align: center;">
+      行内元素: text-align:center
+    </p>
+    <div class="line-body">
+      <div class="line-center-item" style="margin:0 auto;">
+        块级元素：margin: 0 auto
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;transform: translate(-50%, 0);left: 50%;"
+      >
+        不定宽：absolute + left:50% + translate(-50%, 0)
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;margin-left: -200px;left: 50%;"
+      >
+        定宽：absolute + left:50% + margin-left: -width/2
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;left:0;right: 0;margin:0 auto"
+      >
+        定宽：absolute + left:0; right:0 + margin:0 auto
+      </div>
+    </div>
+    <div class="line-body flex" style="justify-content: center;">
+      <div class="line-center-item" style="height: 20px;">
+        flex布局：justify-content:center
+      </div>
+    </div>
+    <hr />
+    <h2>垂直居中</h2>
+    <p class="line-body" style="line-height: 50px;">
+      行内元素: line-height = 父元素高度
+    </p>
+    <div class="line-body vertical-helper">
+      <div
+        class="line-center-item"
+        style="vertical-align:middle;display: inline-block"
+      >
+        行内块级元素：父元素after伪元素+子元素均设置 vertical:middle; display:
+        inline;
+      </div>
+    </div>
+    <div class="line-body" style="display: table">
+      <div style="vertical-align:middle;display: table-cell;">
+        <div class="line-center-item">
+          元素不定高：父元素table-cell + vertical-align
+        </div>
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;top: 50%;transform: translate(0,-50%)"
+      >
+        元素不定高：absolute+top+translate
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;top: 50%;height: 20px;margin-top:-10px; "
+      >
+        元素定高：absolute+ top+ margin-top:-height/2
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;top: 0;bottom:0;height: 20px;margin:auto 0; "
+      >
+        元素定高：absolute+ top:0;bottom:0;+ margin:auto 0;
+      </div>
+    </div>
+    <div class="line-body flex" style="align-items: center">
+      <div class="line-center-item">
+        flex布局：align-items：center;
+      </div>
+    </div>
+    <hr />
+    <h2>水平垂直居中</h2>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;top:50%;left:50%;height: 20px;margin:-10px 0 0 -200px; "
+      >
+        元素定高：absolute+ top:50%; left:50%;+ margin:-height/2 0 0 -width/2;
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;top:0;left:0;bottom:0;right:0; margin:auto;height: 20px;"
+      >
+        元素定高：absolute+ top:0; left:0; bottom:0; right:0+ margin:auto;
+      </div>
+    </div>
+    <div class="line-body">
+      <div
+        class="line-center-item"
+        style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%);height: 20px;"
+      >
+        元素不定高：absolute+ top:50%; left:50%;+
+        transform:translate(-50%,-50%);
+      </div>
+    </div>
+    <div
+      class="line-body flex"
+      style="align-items: center;justify-content:center"
+    >
+      <div class="line-center-item">
+        flex布局：align-items：center;justify-content:center
+      </div>
+    </div>
+  </body>
+</html>

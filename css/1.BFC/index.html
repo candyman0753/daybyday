@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .container {
+        overflow: hidden;
+        background-color: aquamarine;
+        margin: 0 10px;
+        text-align: center;
+      }
+      .child {
+        height: 30px;
+        background-color: antiquewhite;
+        margin: 10px 10px;
+      }
+      /******/
+      .bfc-set {
+        overflow: hidden;
+      }
+      .normal-container {
+        border: 1px solid #000;
+      }
+      .float-child {
+        width: 100px;
+        height: 100px;
+        background: red;
+        float: left;
+      }
+      /****/
+      .normal-block {
+        width: 200px;
+        height: 200px;
+        background: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>bfc上下外边距合并</h2>
+    <div class="container">
+      <div class="child">A</div>
+      <div class="child">B</div>
+    </div>
+    <div class="container" style="background-color: #666">
+      <div class="child">C</div>
+      C在另一个BFC里，防止边距合并
+    </div>
+    <hr />
+    <h2>bfc防止元素坍塌</h2>
+    <div class="normal-container">
+      <div class="float-child"></div>
+    </div>
+    <div style="margin: 120px 0px;"></div>
+    <div class="normal-container bfc-set">
+      <div class="float-child"></div>
+    </div>
+    <hr />
+    <h2>bfc阻止浮动元素遮挡</h2>
+    <div class="float-child"></div>
+    <div class="normal-block">
+      我是一个没有设置浮动, 也没有触发 BFC 元素, width: 200px; height:200px;
+      background: #eee
+    </div>
+    <div class="float-child"></div>
+    <div class="normal-block bfc-set">
+      我是一个没有设置浮动, 但触发 BFC 元素, width: 200px; height:200px;
+      background: #eee
+    </div>
+  </body>
+</html>

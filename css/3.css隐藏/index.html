@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>display：none</h2>
+    <div id="notRender" style="display: none">
+      <div>子元素也未被渲染</div>
+    </div>
+    <hr />
+    <h2>visibility：hidden</h2>
+    <div id="notVisible" style="visibility:hidden">
+      <div>子元素继承隐藏</div>
+      <div style="visibility:visible">
+        子元素visible取消隐藏,我的点击可被监听
+      </div>
+    </div>
+    <hr />
+    <h2>opacity：0</h2>
+    <div id="opacity0" style="opacity:0">
+      <div>子元素继承隐藏</div>
+      <div style="opacity:1">
+        子元素visible无法取消隐藏,我的点击可被监听
+      </div>
+    </div>
+    <script>
+      const notRender = document.querySelector("#notRender");
+      notRender.addEventListener("click", () => {
+        console.log("notRender被点击了");
+      });
+
+      const notVisible = document.querySelector("#notVisible");
+      notVisible.addEventListener("click", () => {
+        console.log("visibility被点击了");
+      });
+
+      const opacity0 = document.querySelector("#opacity0");
+      opacity0.addEventListener("click", () => {
+        console.log("opacity被点击了");
+      });
+    </script>
+  </body>
+</html>
