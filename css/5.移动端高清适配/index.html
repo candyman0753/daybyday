@@ -15,7 +15,7 @@
       }
       @media screen and(-webkit-min-device-pixel-ratio:2) {
         .border-1px::after {
-          content: "";
+          content: '';
           position: absolute;
           top: 0;
           left: 0;
@@ -35,7 +35,7 @@
         border: none;
       }
       .scale-1px::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -62,18 +62,18 @@
     <script>
       const docEl = document.documentElement,
         metaViewPort = document.querySelector("meta[name='viewport']"),
-        rootTag = document.querySelector("html"),
+        rootTag = document.querySelector('html'),
         dpr = window.devicePixelRatio || 1,
         scale = 1 / dpr,
         deviceWidth = Math.floor(docEl.clientWidth * dpr),
-        rem = Math.floor((deviceWidth * 100) / 750);
+        rem = Math.floor((deviceWidth * 100) / 750)
 
       metaViewPort.setAttribute(
-        "content",
+        'content',
         `width=${deviceWidth},initial-scale=${scale}`
-      );
-      rootTag.setAttribute("style", `font-size:${rem}px!important;`);
-      docEl.setAttribute("data-dpr", 1);
+      )
+      rootTag.setAttribute('style', `font-size:${rem}px!important;`)
+      docEl.setAttribute('data-dpr', 1)
     </script>
   </body>
 </html>
