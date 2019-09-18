@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function compare(times) {
+        const a = { key: {} };
+        let temp = a;
+        for (let i = 0; i < times; i++) {
+          let child = temp["key"];
+          child["key"] = {};
+          temp = child;
+        }
+        temp["key"]["key"] = "end";
+        const d0 = Date.now();
+        let i = a;
+        while (i["key"] !== "end") {
+          i = i["key"];
+        }
+        console.log("[]", Date.now() - d0);
+
+        const d1 = Date.now();
+        let j = a;
+        while (j.key !== "end") {
+          j = j.key;
+        }
+        console.log(".", Date.now() - d1);
+      }
+      compare(10000000);
+    </script>
+  </body>
+</html>

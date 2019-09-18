@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="searchInput" />
+    <button id="myButton">增加</button>
+    <script>
+      const myInput = document.querySelector("#searchInput");
+      const myButton = document.querySelector("#myButton");
+      // 观察者
+      function watch(obj, key, callBack) {
+        let temp = obj;
+        let value = obj[key];
+        Object.defineProperty(obj, key, {
+          get() {
+            return value;
+          },
+          set(newVal) {
+            console.log("设置新值", newVal);
+            value = newVal;
+            // 触发回调
+            callBack(value);
+          }
+        });
+        temp[key] = value;
+        return temp;
+      }
+      const obj = new watch({ a: 0, b: 9 }, "a", val => {
+        // myInput.value = val;
+      });
+      // 防抖
+      function debounce(callBack, wait = 500) {
+        let timer;
+        return function() {
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(() => {
+            callBack.apply(this, arguments);
+          }, wait);
+        };
+      }
+      const fnc = debounce(e => {
+        obj.a = e.srcElement.value;
+      });
+
+      // 中文输入处理
+      function chineseHandler(el, callBack) {
+        let isInput = false;
+        el.addEventListener("compositionstart", () => {
+          console.log("compositionstart");
+          isInput = true;
+        });
+        el.addEventListener("compositionend", e => {
+          console.log("compositionend");
+          isInput = false;
+          if (!isInput) callBack(e);
+        });
+        el.addEventListener("input", e => {
+          console.log("input");
+          if (isInput) return;
+          callBack(e);
+        });
+      }
+
+      chineseHandler(myInput, fnc);
+      myButton.addEventListener("click", e => {
+        obj.a++;
+      });
+    </script>
+  </body>
+</html>

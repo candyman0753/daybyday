@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const counts = 100000;
+      const arr = new Array(counts);
+      // 第一个
+      console.time("arr first");
+      arr[0];
+      console.timeEnd("arr first");
+      // 最后一个
+      console.time("arr last");
+      arr[arr.length - 1];
+      console.timeEnd("arr last");
+
+      const obj = {
+        0: "first",
+        100000: "last"
+      };
+      // 第一个
+      console.time("obj first");
+      obj[0];
+      console.timeEnd("obj first");
+      // 最后一个
+      console.time("obj last");
+      obj[100000];
+      console.timeEnd("obj last");
+    </script>
+  </body>
+</html>
