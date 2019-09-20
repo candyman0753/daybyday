@@ -7,10 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="text" id="searchInput" />
+    <input type="text" id="myInput" />
     <button id="myButton">增加</button>
     <script>
-      const myInput = document.querySelector("#searchInput");
+      const myInput = document.querySelector("#myInput");
       const myButton = document.querySelector("#myButton");
       // 观察者
       function watch(obj, key, callBack) {
@@ -30,8 +30,11 @@
         temp[key] = value;
         return temp;
       }
-      const obj = new watch({ a: 0, b: 9 }, "a", val => {
+      const obj = watch({ a: 0, b: 9 }, "a", val => {
         // myInput.value = val;
+      });
+      myButton.addEventListener("click", e => {
+        obj.a++;
       });
       // 防抖
       function debounce(callBack, wait = 500) {
@@ -59,7 +62,7 @@
         el.addEventListener("compositionend", e => {
           console.log("compositionend");
           isInput = false;
-          if (!isInput) callBack(e);
+          callBack(e);
         });
         el.addEventListener("input", e => {
           console.log("input");
@@ -69,9 +72,6 @@
       }
 
       chineseHandler(myInput, fnc);
-      myButton.addEventListener("click", e => {
-        obj.a++;
-      });
     </script>
   </body>
 </html>

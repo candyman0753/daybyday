@@ -43,3 +43,23 @@ function code_3() {
   console.log(a[b]); // 'c'
   console.log(a);
 }
+/**10. */
+function code_10() {
+  function wait() {
+    return new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  async function main() {
+    console.time();
+    const x = wait();
+    const y = wait();
+    const z = wait();
+    x.then(e => console.log(e));
+    await x;
+    await y;
+    await z;
+    console.timeEnd();
+  }
+  main();
+}
+code_10();
