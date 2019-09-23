@@ -52,27 +52,56 @@
 
 ```js
 async function async1() {
-  console.log("async1 start");
-  await async2();
-  console.log("async1 end");
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
 }
 async function async2() {
-  console.log("async2");
+  console.log('async2')
 }
-console.log("script start");
+console.log('script start')
 setTimeout(function() {
-  console.log("setTimeout");
-}, 0);
-async1();
+  console.log('setTimeout')
+}, 0)
+async1()
 new Promise(function(resolve) {
-  console.log("promise1");
-  resolve();
+  console.log('promise1')
+  resolve()
 }).then(function() {
-  console.log("promise2");
-});
-console.log("script end");
+  console.log('promise2')
+})
+console.log('script end')
 ```
 
-- promise 的异步体现在 then 和 catch 中，promise 中的代码会被当做同步任务立即执行
+```js
+setTimeout(function() {
+  // for (var i = 0; i < 100000000; i++) {}
+  console.log('timer a') // 立即加入消息队列
+}, 0)
+
+for (var j = 0; j < 5; j++) {
+  console.log(j)
+}
+
+setTimeout(function() {
+  console.log('timer b') // 立即加入消息队列
+}, 0)
+
+function waitFiveSeconds() {
+  var now = new Date().getTime()
+  while (new Date().getTime() - now < 5000) {} // 阻塞程序5秒
+  console.log('finished waiting')
+}
+
+document.addEventListener('click', function() {
+  console.log('click')
+})
+
+console.log('click begin')
+waitFiveSeconds()
+```
+
+- promise 实例被创建时会添加监听事件，但状态变化时(resolve/reject)才会去触发相应(then/catch 里定义的)回调；promise 中的代码会被当做同步任务立即执行，满足条件的（状态变为 resolve/reject） promise.then 或 promise.reject 才会被加入微任务队列
 - async/await，await 其实是一个让出线程的标志，await 后面的表达式会先执行一遍，再将 await 下面的代码加入微任务队列中，接着跳出该 async 函数继续执行代码
-- 最新的 v8 引擎执行微任务时是先入先出的
+- 最新的 v8 引擎执行微任务时是先进先出的
+- 事件任务优先级比计时器高，所以会出现插队现象
