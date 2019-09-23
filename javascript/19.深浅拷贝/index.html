@@ -7,65 +7,14 @@
     <title>Document</title>
   </head>
   <body>
+    <script src="./copy.js"></script>
+    <script src="./extend.js"></script>
     <script>
-      (() => {
-        let arr = [0, { name: "jack" }, ["old"]];
-        let arr_1 = arr.concat([]);
-        arr_1[0] = 1;
-        arr_1[1].name = "queen";
-        // console.log("concat", arr, arr_1);
-        let arr_2 = arr.slice();
-        arr_2[0] = 2;
-        arr_2[2][0] = "new";
-        // console.log("slice", arr, arr_2);
-        const obj = { name: "jack", fnc: function() {}, arr: [1, 2] };
-        const obj_1 = Object.assign({}, obj);
-        obj_1.arr[0] = 0;
-        obj_1.fnc = 1;
-        // console.log("Object.assign", obj, obj_1);
-      })();
-
-      (() => {
-        const arr = [
-          "0",
-          { name: "jack" },
-          [0],
-          function() {},
-          { fn: function() {} }
-        ];
-        const arr_1 = JSON.parse(JSON.stringify(arr));
-        arr_1[1].name = "queen";
-        // console.log("JSON", arr, arr_1);
-      })();
-      function isObject(val) {
-        return Object.prototype.toString.call(val) === "[object Object]";
-      }
-      function mergeObject(...objs) {
-        const result = Object.create(null);
-        objs.forEach(obj => {
-          if (obj) {
-            Object.keys(obj).forEach(key => {
-              const val = obj[key];
-              if (isObject(val)) {
-                if (isObject(result[key])) {
-                  result[key] = mergeObject(result[key], val);
-                } else {
-                  result[key] = mergeObject(val);
-                }
-              } else {
-                result[key] = val;
-              }
-            });
-          }
-        });
-        return result;
-      }
-      const a = { name: "jack", age: 88, habits: ["ball", "car"] };
-      const b = { name: "queen", age: 18 };
-      const obj = mergeObject({}, a, b);
-      obj.name = "king";
-      obj.habits[0] = "girl";
-      console.log(a, b, obj);
+      var a = { name: function() {} };
+      var b = { name: [1, 6, 7] };
+      const c = objectMerge(true, a, b);
+      // const d = merge(false, a, b)
+      console.log(a, b, c);
     </script>
   </body>
 </html>

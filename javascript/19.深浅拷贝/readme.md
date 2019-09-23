@@ -20,7 +20,9 @@
   ```
 
 - 深拷贝，完全拷贝，互不影响
+
   - JSON.parse(JSON.stringify(obj)) 适用于对象和数组，无法拷贝函数
+
   ```js
   const arr = [
     "0",
@@ -32,7 +34,9 @@
   const arr_1 = JSON.parse(JSON.stringify(arr));
   // ["0", { name: "jack" }, [0], null, {}]
   ```
+
   - 递归遍历
+
   ```js
   function mergeObject(...objs) {
     const result = Object.create(null);
