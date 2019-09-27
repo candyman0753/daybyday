@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [1, 156, 2, 34, 8];
+      function max(arr = []) {
+        return eval("Math.max(" + arr + ")");
+      }
+      function max1(arr = []) {
+        let result = arr[0];
+        arr.forEach(item => {
+          result = Math.max(result, item);
+        });
+        return result;
+      }
+      function max2(arr = []) {
+        return arr.reduce((pre, current) => {
+          return Math.max(pre, current);
+        });
+      }
+      function max3(arr = []) {
+        arr.sort((a, b) => a - b);
+        return arr[arr.length - 1];
+      }
+      console.time("1a");
+      console.log(max2(arr));
+      console.timeEnd("1a");
+      console.time("2b");
+      console.log(Math.max.apply(null, arr));
+      console.timeEnd("2b");
+      console.time("3c");
+      console.log(Math.max(...arr));
+      console.timeEnd("3c");
+    </script>
+  </body>
+</html>

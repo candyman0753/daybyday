@@ -3,10 +3,10 @@
 
 ```js
 const arrLike = {
-  '0': 1,
-  '2': 'jack',
+  "0": 1,
+  "2": "jack",
   length: 2
-}
+};
 ```
 
 - `Array.prototype.push(item1, ...itemN)`
@@ -21,7 +21,34 @@ const arrLike = {
   const arrLike = {
     length: 1,
     splice: function() {}
-  }
-  console.log(arrLike)
+  };
+  console.log(arrLike);
   // Object [empty, splice: ƒ]
   ```
+
+**类数组检测**
+
+- 类数组至少满足以下三个条件之一
+  - 数组
+  - 长度为 0
+  - lengths 属性是大于 0 的数字类型，且`obj[length-1]`必须存在
+
+```js
+function isArrayLike(obj) {
+  //必须有length属性
+  const length = !!obj && "length" in obj && obj.length;
+  // 结合类型判断
+  const objType = typeCheck(obj);
+  // 排除函数和window
+  if (objType === "function" || isWindow(obj)) {
+    return false;
+  }
+  return (
+    objType === "array" ||
+    length === 0 ||
+    (typeof length === "number" && length > 0 && length - 1 in obj)
+  );
+  // length为0；如 Arguments对象
+  // length为数字，且最后一个元素
+}
+```
