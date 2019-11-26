@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <tabs v-model="activeIndex" @on-close="close">
+        <pane
+          v-for="item in paneList"
+          :key="item"
+          closable
+          :label="item"
+          :name="item"
+          >{{item}}</pane
+        >
+      </tabs>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="tabs.js"></script>
+    <script src="pane.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            activeIndex: "标签2",
+            paneList: ["标签1", "标签2", "标签3", "标签4"]
+          };
+        },
+        methods: {
+          close(i) {
+            this.paneList.splice(i, 1);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+[v-cloak] {
+  display: none;
+}
+.tabs {
+  font-size: 14px;
+  color: #333;
+}
+.tabs-bar {
+  display: flex;
+}
+.tabs-tab {
+  padding: 4px 16px;
+  margin-right: 6px;
+  border: 1px solid #d7dde4;
+  cursor: pointer;
+  position: relative;
+}
+.tabs-content {
+  min-height: 300px;
+  border: 1px solid #d7dde4;
+}
+.tabs-tab.active {
+  color: #3399ff;
+}
+.close-icon {
+  color: #666;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  padding: 0 6px;
+}
+.pane {
+  height: 100%;
+  background-color: #d7dde4;
+  animation: slide-left 1s ease;
+}
+@keyframes slide-left {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
