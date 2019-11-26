@@ -23,7 +23,7 @@ body {
   position: relative;
 }
 .tabs-content {
-  min-height: 300px;
+  height: 300px;
   border: 1px solid #d7dde4;
 }
 .tabs-tab.active {
@@ -40,11 +40,11 @@ body {
 .pane {
   height: 100%;
   background-color: #d7dde4;
-  animation: slide-left 1s ease;
+  animation: slide-left 0.5s ease;
 }
 @keyframes slide-left {
   from {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
   to {
     transform: translate3d(0, 0, 0);
