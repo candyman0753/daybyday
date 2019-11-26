@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [
+        {
+          province: '⼴东省',
+          city: '⼴州市',
+          district: '天河区'
+        },
+        {
+          province: '⼴东省',
+          city: '⼴州市',
+          district: '⽩云区'
+        },
+        {
+          province: '⼴东省',
+          city: '东莞市',
+          district: '常平镇'
+        },
+        {
+          province: '广西省',
+          city: 'A市',
+          district: 'A镇'
+        },
+        {
+          province: '广西省',
+          city: 'b市',
+          district: 'b镇'
+        }
+      ]
+
+      function arr2obj(arr = [], obj = {}) {
+        arr.forEach(item => {
+          const province = item.province,
+            city = item.city,
+            district = item.district
+          obj[province] = obj[province] || {}
+          obj[province][city] = obj[province][city] || {}
+          obj[province][city][district] = 0
+        })
+        return obj
+      }
+
+      function obj2arr(obj = {}, arr = []) {
+        for (let key in obj) {
+          const temp = {}
+          temp.name = key
+          if (obj[key]) {
+            temp.children = obj2arr(obj[key])
+          }
+          arr.push(temp)
+        }
+        return arr
+      }
+      console.log(obj2arr(arr2obj(arr)))
+    </script>
+  </body>
+</html>
