@@ -9,29 +9,42 @@
   </head>
   <body>
     <div id="app" v-cloak>
-      <div class="main" v-clickoutside="handleClose">
+      <div class="main" v-clickoutside.esc="expression">
         <button @click="isShow=!isShow">展示下拉</button>
         <div class="dropdown" v-show="isShow">
           <p>我是下拉框内容我是下拉框内容</p>
         </div>
       </div>
+      <div v-time="timeNow"></div>
+      <div v-birthday.more="timeBefore"></div>
     </div>
     <script src="../vue.js"></script>
     <script src="clickoutside.js"></script>
+    <script src="time.js"></script>
+
     <script>
       const app = new Vue({
-        el: '#app',
+        el: "#app",
         data() {
           return {
-            isShow: false
-          }
+            isShow: false,
+            expression: this.handleClose,
+            timeNow: new Date().getTime(),
+            timeBefore: new Date(`2019-11-26`)
+          };
         },
         methods: {
           handleClose() {
-            this.isShow = false
+            this.isShow = false;
+          },
+          change() {
+            this.expression = this.alert;
+          },
+          alert() {
+            console.log("update expression");
           }
         }
-      })
+      });
     </script>
   </body>
 </html>

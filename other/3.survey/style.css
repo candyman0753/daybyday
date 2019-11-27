@@ -1,0 +1,65 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+}
+[v-cloak] {
+  display: none;
+}
+.main {
+  margin: 10px auto;
+}
+button {
+  background-color: transparent;
+}
+.g-button {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+.g-button.primary {
+  color: #fff;
+  background-color: #39f;
+}
+.g-button.warning {
+  color: #fff;
+  background-color: rgb(251, 138, 31);
+}
+.g-button.disabled {
+  opacity: 0.5;
+}
+.g-button:active {
+  transform: translate3d(1px, 1px, 0);
+}
+.bar {
+  display: flex;
+  justify-content: space-around;
+}
+.bar {
+  margin: 20px 0;
+}
+.bar .g-button {
+  margin: 0 20px;
+}
+.label {
+  width: 50px;
+  height: 100px;
+}
+.page {
+  padding: 10px;
+  min-height: 500px;
+}
+.g-radio + .g-radio {
+  margin-left: 5px;
+}
