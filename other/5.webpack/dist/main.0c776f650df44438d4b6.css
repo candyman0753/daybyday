@@ -1,0 +1,48 @@
+
+button[data-v-434a3f2d] {
+  background-color: transparent;
+}
+.g-button[data-v-434a3f2d] {
+  display: inline-block;
+  /* width: 100%; */
+  border: 0;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.g-button.primary[data-v-434a3f2d] {
+  color: #fff;
+  background-color: #39f;
+}
+.g-button.warning[data-v-434a3f2d] {
+  color: #fff;
+  background-color: rgb(251, 138, 31);
+}
+.g-button.success[data-v-434a3f2d] {
+  color: #fff;
+  background-color: rgb(14, 172, 130);
+}
+.g-button.disabled[data-v-434a3f2d] {
+  background-color: #bbb;
+  opacity: 0.5;
+}
+.g-button[data-v-434a3f2d]:active {
+  transform: translate3d(1px, 1px, 0);
+}
+
+h1 a[data-v-0e80c22d] {
+  color: #3399ff;
+  font-size: 24px;
+}
+
+.title[data-v-381730fa] {
+  color: #f60;
+  font-size: 24px;
+}

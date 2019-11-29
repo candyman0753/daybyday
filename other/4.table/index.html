@@ -9,14 +9,11 @@
   </head>
   <body>
     <div id="app" v-cloak>
-      <ele></ele>
+      <v-table :data="data" :columns="columns"></v-table>
+      <button @click="addData">插入数据</button>
     </div>
     <script src="../vue.js"></script>
+    <script src="table.js"></script>
     <script src="index.js"></script>
-    <script>
-      const app = new Vue({
-        el: '#app'
-      })
-    </script>
   </body>
 </html>

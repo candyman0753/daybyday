@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+}
+[v-cloak] {
+  display: none;
+}
+#app {
+  height: 100%;
+}
+table {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid #e9e9e9;
+}
+table th {
+  background-color: #f7f7f7;
+  color: #5c6b77;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+}
+table td,
+table th {
+  padding: 8px 16px;
+  border: 1px solid #e9e9e9;
+  text-align: left;
+}
+table th a {
+  display: inline-block;
+  margin: 0 4px;
+  cursor: pointer;
+}
+table th a.active {
+  color: #3399ff;
+}
+table th a:hover {
+  color: #3399ff;
+}
