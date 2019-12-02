@@ -1,26 +1,18 @@
-import _ from 'lodash'
-import printMe from './print.js'
-import style from './style.less'
+// import _ from 'lodash'
 
 function component() {
-  const el = document.createElement('div')
-  const btn = document.createElement('button')
-
-  el.innerHTML = _.join(['hello', 'webpack demo'], ' ')
-  el.classList.add('hello')
-
-  btn.innerHTML = 'click me'
-  btn.onclick = printMe
-
-  el.appendChild(btn)
-
-  return el
+  return import(/* webpackChunkName: "lodash" */ "lodash").then(_ => {
+    const el = document.createElement("div");
+    el.innerHTML = _.join(["hi", "jack"], " ");
+    return el;
+  });
 }
-document.body.appendChild(component())
+component().then(el => document.body.appendChild(el));
 
-if (module.hot) {
-  module.hot.accpet('./print.js', function() {
-    console.log('Accepting the updated printMe module!')
-    printMe()
-  })
-}
+// 热更新处理
+// if (module.hot) {
+//   module.hot.accpet('./print.js', function() {
+//     console.log('Accepting the updated printMe module!')
+//     printMe()
+//   })
+// }
