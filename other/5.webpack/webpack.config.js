@@ -1,30 +1,18 @@
-const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
+var path = require("path");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const config = {
-  mode: "development",
+var config = {
   entry: {
     main: "./main"
   },
   output: {
     path: path.join(__dirname, "./dist"),
     publicPath: "/dist/",
-    filename: "main.js"
+    filename: "[name].js",
+    chunkFilename: "[name].chunk.js"
   },
   module: {
     rules: [
-      {
-        test: /\.(gif|jpg|png|woff|svg|eot|tff)\??.*$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 1024
-            }
-          }
-        ]
-      },
       {
         test: /\.vue$/,
         loader: "vue-loader",
@@ -48,10 +36,22 @@ const config = {
           use: "css-loader",
           fallback: "style-loader"
         })
+      },
+      {
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+        loader: "url-loader?limit=1024"
       }
     ]
   },
-  plugins: [new ExtractTextPlugin("main.css"), new VueLoaderPlugin()]
+  plugins: [
+    new ExtractTextPlugin({
+      filename: "[name].css",
+      allChunks: true
+    })
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };
 
 module.exports = config;
